@@ -4,10 +4,12 @@ import Item from "./cart/Item";
 
 const Cart = ({ items }) => {
   let total = 0;
-  total = items.reduce(
-    (total, item) => (total += item.price * item.quantity),
-    0
-  );
+  total =
+    items &&
+    items.reduce(
+      (total, item) => (total += item.price * item.quantity ?? 1),
+      0
+    );
 
   const cart =
     items.length > 0 ? (
@@ -56,4 +58,5 @@ const mapStateToProps = (state) => {
     items: state.myCart,
   };
 };
+
 export default connect(mapStateToProps)(Cart);

@@ -1,7 +1,7 @@
 import react, { useState } from "react";
 import { connect } from "react-redux";
 import { addProduct } from "../features/actions/cartActions";
-const Add = ({addProduct}) => {
+const Add = ({ addProduct, items }) => {
   const [item, setItem] = useState({
     title: "",
     description: "",
@@ -31,8 +31,9 @@ const Add = ({addProduct}) => {
     }
   };
   const handleSubmit = (event) => {
-      event.stopPropagation()
-        addProduct(item);
+    console.log(items.length);
+    event.stopPropagation();
+    addProduct(item, items.length);
   };
   return (
     <>
@@ -41,7 +42,7 @@ const Add = ({addProduct}) => {
           <div className="col-md-12 col-xs-12">
             <div className="row">
               <h5>Add Product</h5>
-              <form onSubmit={(event)=>handleSubmit(event)}>
+              <div>
                 <div className="input-group row g-3">
                   <div className="col-sm-6">
                     <label htmlFor="title" className="form-label">
@@ -121,11 +122,15 @@ const Add = ({addProduct}) => {
                     />
                   </div>
                 </div>
-                <hr className="my-4"/>
-                <button className="btn btn-primary" type="submit">
+                <hr className="my-4" />
+                <button
+                  className="btn btn-primary"
+                  type="submit"
+                  onClick={(event) => handleSubmit(event)}
+                >
                   Add product
                 </button>
-              </form>
+              </div>
             </div>
           </div>
         </div>
@@ -136,10 +141,15 @@ const Add = ({addProduct}) => {
 
 const mapDispatchToProps = (dispatchEvent) => {
   return {
-    addProduct: (item) => {
-      dispatchEvent(addProduct(item));
+    addProduct: (item, id) => {
+      dispatchEvent(addProduct(item, id));
     },
   };
 };
+const mapStateToProps = (state) => {
+  return {
+    items: state.items,
+  };
+};
 
-export default connect(null, mapDispatchToProps)(Add);
+export default connect(mapStateToProps, mapDispatchToProps)(Add);

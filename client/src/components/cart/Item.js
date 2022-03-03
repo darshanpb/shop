@@ -11,9 +11,7 @@ const Item = ({ item, updateCartQuantity, removeItem }) => {
     btnVisible: false,
   });
 
-  useEffect(()=>{
-      
-  })
+  useEffect(() => {});
   const handleChange = (e) => {
     if (e.target.value <= 0) {
       alert("Quantity must be greater than or equal to 1");
@@ -42,7 +40,7 @@ const Item = ({ item, updateCartQuantity, removeItem }) => {
   };
 
   const handleRemove = (e) => {
-      e.preventDefault();
+    e.preventDefault();
     removeItem(item.id);
   };
 
@@ -64,7 +62,7 @@ const Item = ({ item, updateCartQuantity, removeItem }) => {
             </strong>
           </h4>
         </div>
-        <form onSubmit={handleSubmit}>
+        <div>
           <div className="col-xs-4">
             <input
               type="number"
@@ -76,7 +74,11 @@ const Item = ({ item, updateCartQuantity, removeItem }) => {
 
           {state.btnVisible ? (
             <div className="col-xs-2">
-              <button type="submit" className="btn btn-info">
+              <button
+                type="submit"
+                className="btn btn-info"
+                onClick={(e) => handleSubmit(e)}
+              >
                 Update
               </button>
             </div>
@@ -91,7 +93,7 @@ const Item = ({ item, updateCartQuantity, removeItem }) => {
               <span className="glyphicon glyphicon-trash"> </span>
             </button>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );

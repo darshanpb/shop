@@ -1,7 +1,7 @@
 import React from "react";
 import { LinkContainer } from "react-router-bootstrap";
 import { Navbar, Container, Nav } from "react-bootstrap";
-import logo from '../assets/logo.svg';
+import logo from "../assets/logo.svg";
 const NavBar = () => {
   return (
     <>

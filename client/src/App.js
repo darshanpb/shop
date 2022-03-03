@@ -8,16 +8,16 @@ import NavBar from "./components/NavBar";
 import Add from "./components/Add";
 function App() {
   return (
-      <div className="App">
-        <NavBar />
-        <Container className='w-75 flex-column m-auto p-4'>
-          <Routes>
-            <Route exact path="/" element={<Home/>} />
-            <Route path="/cart" element={<Cart/>} />
-            <Route path='/add' element={<Add/>}/>
-          </Routes>
-        </Container>
-      </div>
+    <div className="App">
+      <NavBar />
+      <Container className="w-75 flex-column m-auto p-4">
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/add" element={<Add />} />
+        </Routes>
+      </Container>
+    </div>
   );
 }
 

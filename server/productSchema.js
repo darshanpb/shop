@@ -29,9 +29,8 @@ var productSchema = new mongoose.Schema(
       required: true,
     },
   },
+  { collection: "Products" },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Product", productSchema, {
-  collection: "Product",
-});
+module.exports = mongoose.model("Product", productSchema);

@@ -11,13 +11,12 @@ exports.addProduct = async (req, res) => {
   } catch (error) {
     res.status(500).send({
       status: 500,
-      message: `Something wen't wrong`,
+      message: `Something wen't wrong + ${error}`,
     });
   }
 };
 
 exports.getProducts = async (req, res) => {
-    console.log("hererere")
   try {
     Product.find({}, function (err, products) {
       if (!err) {

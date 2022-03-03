@@ -4,12 +4,17 @@ import { connect } from "react-redux";
 import { addToCart } from "../features/actions/cartActions";
 
 const Home = ({ items = [], myCart = [], addToCart, loadData }) => {
-  
   const handleClick = (event, id) => {
     addToCart(id);
   };
   return (
-    <div xs={1} md={2} sm={3} lg={4} className="d-flex flex-row flex-wrap gap-5">
+    <div
+      xs={1}
+      md={2}
+      sm={3}
+      lg={4}
+      className="d-flex flex-row flex-wrap gap-5"
+    >
       {items.map((item) => (
         <ItemCard
           key={item.id}
@@ -29,7 +34,7 @@ const Home = ({ items = [], myCart = [], addToCart, loadData }) => {
 const mapStateToProps = (state) => {
   return {
     items: state.items,
-    myCart: state.myCart
+    myCart: state.myCart,
   };
 };
 
@@ -37,7 +42,7 @@ const mapDispatchToProps = (dispatchEvent) => {
   return {
     addToCart: (id) => {
       dispatchEvent(addToCart(id));
-    }
+    },
   };
 };
 

@@ -9,7 +9,7 @@ const app = express();
 
 // database init
 mongoose
-  .connect('mongodb://localhost:27017/Product', {
+  .connect('mongodb://localhost:27017', {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useCreateIndex: true,

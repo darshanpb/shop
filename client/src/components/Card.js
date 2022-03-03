@@ -39,7 +39,7 @@ const ItemCard = (props) => {
                 onClick={(event, id) => {
                   onClick && onClick(event, id);
                 }}
-                style={{width:'10rem'}}
+                style={{ width: "10rem" }}
               >
                 {inCart ? "Remove from Cart" : "Add to Cart"}
               </Button>
