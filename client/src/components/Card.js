@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Button, Card, Col, Row } from "react-bootstrap";
-
+import fallback from '../assets/fallback.svg'
 const ItemCard = (props) => {
   const {
     id,
@@ -20,7 +20,12 @@ const ItemCard = (props) => {
       style={{ width: "18rem", height: "fit-content" }}
       className="border-1 rounded-2"
     >
-      <Card.Img className="border rounded-3 pt-1" src={src} alt={"Item Logo"} />
+      <Card.Img
+        className="border rounded-3 pt-1"
+        src={src}
+        onError={(e) => (e.target.src = fallback)}
+        alt={"Item Logo"}
+      />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">{subTitle}</Card.Subtitle>

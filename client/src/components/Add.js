@@ -1,7 +1,9 @@
 import react, { useState } from "react";
 import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { addProduct } from "../features/actions/cartActions";
 const Add = ({ addProduct, items }) => {
+  const navigate = useNavigate();
   const [item, setItem] = useState({
     title: "",
     description: "",
@@ -31,9 +33,8 @@ const Add = ({ addProduct, items }) => {
     }
   };
   const handleSubmit = (event) => {
-    console.log(items.length);
     event.stopPropagation();
-    addProduct(item, items.length);
+    addProduct(item, items.length, navigate);
   };
   return (
     <>
@@ -141,8 +142,8 @@ const Add = ({ addProduct, items }) => {
 
 const mapDispatchToProps = (dispatchEvent) => {
   return {
-    addProduct: (item, id) => {
-      dispatchEvent(addProduct(item, id));
+    addProduct: (item, id, navigate) => {
+      dispatchEvent(addProduct(item, id, navigate));
     },
   };
 };

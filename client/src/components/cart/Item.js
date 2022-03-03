@@ -4,7 +4,7 @@ import {
   updateCartQuantity,
   removeItem,
 } from "../../features/actions/cartActions";
-
+import fallback from "../../assets/fallback.svg";
 const Item = ({ item, updateCartQuantity, removeItem }) => {
   const [state, setState] = useState({
     quantity: item.quantity,
@@ -47,51 +47,67 @@ const Item = ({ item, updateCartQuantity, removeItem }) => {
   return (
     <div className="row">
       <div className="col-xs-2">
-        <img className="img-responsive" alt={"product"} src={item.thumbnail} />
+        <img
+          className="img-responsive"
+          alt={"product"}
+          src={item.thumbnail}
+          onError={(e) => (e.target.src = fallback)}
+        />
       </div>
       <div className="col-xs-4">
         <h4 className="product-name">
           <strong>{item.title}</strong>
         </h4>
       </div>
-      <div className="col-xs-6">
-        <div className="col-xs-3 text-right">
-          <h4 className="m-2">
-            <strong>
-              {item.price} <span className="text-muted">x</span>
-            </strong>
-          </h4>
-        </div>
-        <div>
-          <div className="col-xs-4">
-            <input
-              type="number"
-              className="form-control input-sm"
-              onChange={handleChange}
-              value={state.quantity}
-            />
+      <div className="row">
+        <div className="col-xs-6">
+          <div className="col-xs-3 text-right">
+            <h4 className="m-2">
+              <strong>
+                {item.price} <span className="text-muted">x</span>
+              </strong>
+            </h4>
           </div>
+          <div>
+            <div className="col-xs-4">
+              <input
+                type="number"
+                className="form-control input-sm"
+                onChange={handleChange}
+                value={state.quantity}
+              />
+            </div>
 
-          {state.btnVisible ? (
+            {state.btnVisible ? (
+              <div className="col-xs-2">
+                <button
+                  type="submit"
+                  className="btn btn-info"
+                  onClick={(e) => handleSubmit(e)}
+                >
+                  Update
+                </button>
+              </div>
+            ) : null}
+
             <div className="col-xs-2">
               <button
-                type="submit"
-                className="btn btn-info"
-                onClick={(e) => handleSubmit(e)}
+                type="button"
+                onClick={handleRemove}
+                className="btn btn-link btn-xs"
               >
-                Update
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-trash3-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                </svg>{" "}
               </button>
             </div>
-          ) : null}
-
-          <div className="col-xs-2">
-            <button
-              type="button"
-              onClick={handleRemove}
-              className="btn btn-link btn-xs"
-            >
-              <span className="glyphicon glyphicon-trash"> </span>
-            </button>
           </div>
         </div>
       </div>

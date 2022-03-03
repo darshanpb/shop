@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ItemCard from "./Card";
 import { connect } from "react-redux";
 import { addToCart } from "../features/actions/cartActions";
-
-const Home = ({ items = [], myCart = [], addToCart, loadData }) => {
+import { fetchData } from "../features/actions/cartActions";
+const Home = ({ items = [], myCart = [], addToCart, fetchData }) => {
+  useEffect(() => {
+    fetchData();
+  }, []);
   const handleClick = (event, id) => {
     addToCart(id);
   };
@@ -42,6 +45,9 @@ const mapDispatchToProps = (dispatchEvent) => {
   return {
     addToCart: (id) => {
       dispatchEvent(addToCart(id));
+    },
+    fetchData: () => {
+      dispatchEvent(fetchData());
     },
   };
 };

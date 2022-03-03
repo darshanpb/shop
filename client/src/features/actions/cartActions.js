@@ -25,16 +25,14 @@ export const fetchData = () => {
   };
 };
 
-export const addProduct = (item, id) => {
+export const addProduct = (item, id, navigate) => {
   let itemWith = { ...item, id };
   return async (dispatch) => {
     axios
       .post("http://localhost:5000/api/Product", itemWith)
       .then((res) => {
-        return {
-          type: ADD_PRODUCT,
-          itemWith,
-        };
+        navigate('/');
+        return fetchData();
       })
       .catch((error) => {
         console.error(error);
