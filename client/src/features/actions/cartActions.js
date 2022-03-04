@@ -3,7 +3,6 @@ import {
   ADD_TO_CART,
   REMOVE_ITEM,
   UPDATE_QUANTITY,
-  ADD_PRODUCT,
   LOAD_DATA,
 } from "./cartActionTypes";
 const loadData = (items) => ({
